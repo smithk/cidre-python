@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cidre"
+dynamic = ["version"]
+description = "CIDRE: retrospective illumination correction for optical microscopy"
+readme = "README.md"
+license = "GPL-2.0-or-later"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+authors = [{ name = "Kevin Smith", email = "smith.kevin.charles@gmail.com" }]
+keywords = ["microscopy", "illumination correction", "flat-field", "vignetting", "shading correction", "bioimage analysis"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "numpy>=1.22",
+    "scipy>=1.8",
+    "tifffile>=2021.1",
+    "imageio>=2.16",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+cidre = "cidre.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/smithk/cidre-python"
+"MATLAB and ImageJ versions" = "https://github.com/smithk/cidre"
+Paper = "https://doi.org/10.1038/nmeth.3323"
+
+[tool.hatch.version]
+path = "src/cidre/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cidre"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
